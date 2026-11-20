@@ -410,6 +410,13 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 .xp ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
 .xp ul li{position:relative;padding-left:22px;color:var(--ink-2)}
 .xp ul li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1.5px;background:var(--accent)}
+.xp__roles{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px;position:relative}
+.xp__roles::before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1.5px;background:var(--line-2)}
+.xp__roles li{position:relative;padding-left:26px;display:grid;gap:2px}
+.xp__roles li::before{content:"";position:absolute;left:0;top:.36em;width:12px;height:12px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--ink-3)}
+.xp__roles li.is-current::before{background:var(--accent);box-shadow:0 0 0 4px rgba(246,162,30,.22)}
+.xp__roles b{font-size:17px;font-weight:600;letter-spacing:-.02em}
+.xp__roles span{font-size:14px;color:var(--ink-3);font-variant-numeric:tabular-nums}
 
 /* research */
 .duo{display:grid;gap:18px}
@@ -522,7 +529,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
       </div>
       <h1 id="hero-title"><span class="ln"><span>I build AI that</span></span><span class="ln"><span><em>sees<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14 C 50 4, 120 4, 197 11"/></svg></em> crops.</span></span></h1>
       <div class="hero__row">
-        <p class="hero__lede">For two years I've built and run production AI from scratch on AWS for a Google-funded Government of India agriculture programme. I make the <b>Flutter apps</b> farmers use, the <b>cloud backends</b> behind them, and the <b>model.annam.ai</b> platform that serves <b>10M+ geo-tagged crop images</b>.</p>
+        <p class="hero__lede">Since April 2025 I've built and run production AI from scratch on AWS for a Google-funded Government of India agriculture programme. I make the <b>Flutter apps</b> farmers use, the <b>cloud backends</b> behind them, and the <b>model.annam.ai</b> platform that serves <b>10M+ geo-tagged crop images</b>.</p>
         <div class="hero__ctas">
           <a class="btn btn--accent magnetic" href="#work">See selected work <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="tlink" href="#contact">Get in touch</a>
@@ -573,10 +580,10 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
         <p class="label">Introduction</p>
         <h2 class="about__title" id="about-title">Hi, I'm <em>Deepak</em>.</h2>
         <p class="statement">I take computer vision out of the lab and into the <em>field</em>. I build the apps people use to photograph crops, the cloud that takes in millions of images, and the models that answer them.</p>
-        <p class="about__body">I'm Lead Software Engineer at Annam.ai, the AI Centre of Excellence under India's Ministry of Education at IIT Ropar. Before that I built event and learning platforms at IIT Ropar's iHub-AWaDH, and a public-safety web app for Rajasthan Police as an intern at iNeuron.ai.</p>
+        <p class="about__body">I'm Lead Software Engineer at Annam.ai, the AI Centre of Excellence under India's Ministry of Education at IIT Ropar. I joined as a Software Engineer in April 2025 and became Lead Software Engineer in April 2026. Before that I built event and learning platforms at IIT Ropar's iHub-AWaDH, and a public-safety web app for Rajasthan Police as an intern at iNeuron.ai.</p>
         <dl class="about__facts">
           <div><dt>Based in</dt><dd>Ropar, Punjab</dd></div>
-          <div><dt>Experience</dt><dd>2 years in production AI</dd></div>
+          <div><dt>At Annam.ai</dt><dd>Since April 2025</dd></div>
           <div><dt>Certified</dt><dd>AWS × 2 · Azure × 3</dd></div>
           <div><dt>Education</dt><dd>B.Tech CSE · Minor in AI</dd></div>
         </dl>
@@ -813,7 +820,14 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
       <ol class="xp">
         <li>
           <p class="xp__when">Apr 2025 – Present</p>
-          <div><h3>Lead Software Engineer</h3><p class="xp__org">Annam.ai · AI Centre of Excellence, Ministry of Education · IIT Ropar, Punjab</p></div>
+          <div>
+            <h3>Annam.ai</h3>
+            <p class="xp__org">AI Centre of Excellence, Ministry of Education · IIT Ropar, Punjab</p>
+            <ol class="xp__roles" aria-label="Roles at Annam.ai">
+              <li class="is-current"><b>Lead Software Engineer</b><span>Apr 2026 – Present</span></li>
+              <li><b>Software Engineer</b><span>Apr 2025 – Mar 2026</span></li>
+            </ol>
+          </div>
           <ul>
             <li>Built from scratch and run the national crop-data platform on AWS (Lambda, DynamoDB, S3, Cognito, IAM): 13M+ image records across 480 crops and 24 states, plus a 34-route Next.js admin dashboard.</li>
             <li>Stood up model.annam.ai, the AgriVision inference platform: 4 agricultural computer-vision models served through API-key-secured FastAPI behind Nginx with LayerCAM heatmaps.</li>
