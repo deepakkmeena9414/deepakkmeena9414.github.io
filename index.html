@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,400..600&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Layout: porcelain editorial page. A golden-hour crop field opens it, FasalNetra plays inside a pinned phone, the other apps stack as colour-world cards, the platforms slide past on a dark rail, and marigold is the single accent. */
+/* Layout: porcelain editorial page. A golden-hour crop field opens it, FasalNetra plays inside a pinned phone, the other apps stack as colour-world cards, the platforms sit in a dark grid band, and marigold is the single accent. */
 :root{
   --bg:#F3F3F0; --surface:#FFFFFF; --ink:#0D0E0D; --ink-2:#575A57; --ink-3:#8B8E8A;
   --line:rgba(13,14,13,.10); --line-2:rgba(13,14,13,.18);
@@ -364,23 +364,21 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 .card{border-radius:18px;background:rgba(255,255,255,.92);color:#101410;box-shadow:0 40px 80px -36px rgba(0,0,0,.6);overflow:hidden;z-index:5}
 @media (max-width:640px){.chip{font-size:11px;padding:7px 11px 7px 8px}.chip i{width:14px;height:14px}.card{border-radius:12px}}
 
-/* platforms rail */
-.rail{--s-ink:var(--rail-ink);--s-line:var(--rail-line);--s-solid:var(--rail);position:relative;background:var(--rail);color:var(--rail-ink);border-radius:clamp(26px,3.4vw,48px);margin-top:clamp(56px,8vw,120px)}
-.rail__pin{position:relative;overflow:hidden;padding-block:clamp(48px,6vw,88px)}
-.rail__track{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--rail-line) transparent;padding-inline:max(16px,env(safe-area-inset-left,0px));padding-bottom:12px}
-@media (min-width:760px){.rail__track{padding-inline:max(40px,calc((100vw - 1360px) / 2 + 40px))}}
-.rail__intro{flex:0 0 min(84vw,430px);scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;gap:18px;padding-right:8px}
+/* platforms band */
+.rail{--s-ink:var(--rail-ink);--s-line:var(--rail-line);--s-solid:var(--rail);position:relative;background:var(--rail);color:var(--rail-ink);border-radius:clamp(26px,3.4vw,48px);margin-top:clamp(56px,8vw,120px);padding-block:clamp(56px,7vw,110px)}
+.rail__in{display:grid;gap:clamp(32px,4vw,56px)}
+.rail__intro{display:grid;gap:18px 40px}
+@media (min-width:980px){.rail__intro{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:end}}
 .rail__intro .label{color:var(--rail-muted)}
-.rail__intro h2{margin:0;font-weight:600;font-size:clamp(44px,5.4vw,90px);line-height:.9;letter-spacing:-.06em;text-wrap:balance}
+.rail__intro h2{margin:14px 0 0;font-weight:600;font-size:clamp(44px,6vw,100px);line-height:.9;letter-spacing:-.06em;text-wrap:balance}
 .rail__intro h2 em{font-size:1.05em}
-.rail__intro p{margin:0;color:var(--rail-muted);font-size:clamp(16px,1.3vw,19px);max-width:32ch}
-.rail__hint{display:none;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--accent)}
-.rail__hint svg{width:18px;height:18px}
-.rcard{flex:0 0 min(86vw,560px);scroll-snap-align:start;display:grid;gap:22px;align-content:start;padding:clamp(16px,2vw,26px);border-radius:clamp(20px,2vw,28px);background:var(--rail-card);border:1px solid var(--rail-line);min-width:0}
-@media (min-width:1000px){.rcard{flex-basis:min(74vw,1060px);grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:center;gap:clamp(24px,2.6vw,40px)}}
-.rcard__text{display:flex;flex-direction:column;gap:15px;min-width:0}
+.rail__intro>p{margin:0;color:var(--rail-muted);font-size:clamp(16px,1.35vw,20px);max-width:40ch}
+.rail__grid{display:grid;gap:clamp(16px,2vw,28px)}
+@media (min-width:1000px){.rail__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rcard{display:flex;flex-direction:column;gap:24px;padding:clamp(14px,1.6vw,22px);border-radius:clamp(20px,2vw,28px);background:var(--rail-card);border:1px solid var(--rail-line);min-width:0}
+.rcard__text{display:flex;flex-direction:column;gap:15px;min-width:0;padding:0 clamp(4px,.8vw,10px) clamp(4px,.8vw,10px)}
 .rcard__meta{margin:0;font-size:14px;font-weight:500;color:var(--rail-muted)}
-.rcard h3{margin:0;font-size:clamp(34px,3.4vw,56px);font-weight:600;letter-spacing:-.05em;line-height:.95}
+.rcard h3{margin:0;font-size:clamp(34px,3.2vw,52px);font-weight:600;letter-spacing:-.05em;line-height:.95}
 .rcard h3 em{font-size:1.04em;letter-spacing:-.02em}
 .rcard p{margin:0;color:var(--rail-muted);font-size:16px;line-height:1.5}
 .rcard__facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0;padding:14px 0 0;border-top:1px solid var(--rail-line)}
@@ -401,13 +399,6 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 .lbar__f{display:block;height:100%;border-radius:999px}
 .lbar__f--a{width:100%;background:linear-gradient(90deg,#F6A21E,#E2553B)}
 .lbar__f--b{width:max(8px,1%);background:#3CCB72}
-.rail__progress{display:none;position:absolute;left:50%;bottom:26px;width:min(240px,40vw);height:2px;translate:-50% 0;background:var(--rail-line);border-radius:2px;overflow:hidden}
-.rail__progress i{display:block;height:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(var(--rp,0))}
-.rail--live .rail__pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:calc(env(safe-area-inset-top,0px) + 76px) 40px}
-@supports (height:100svh){.rail--live .rail__pin{height:100svh}}
-.rail--live .rail__track{overflow:visible;scroll-snap-type:none;width:max-content;padding-bottom:0;will-change:transform}
-.rail--live .rail__hint{display:inline-flex}
-.rail--live .rail__progress{display:block}
 
 /* experience */
 .xp{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
@@ -752,15 +743,12 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
   </section>
 
   <section class="rail" id="platforms" aria-labelledby="rail-title">
-    <div class="rail__pin">
-      <div class="rail__track">
-        <div class="rail__intro">
-          <p class="label">Platforms</p>
-          <h2 id="rail-title">The platforms behind the <em>apps</em>.</h2>
-          <p>Four web platforms I built and run for model serving, photo quality, storage and risk advisory.</p>
-          <span class="rail__hint">Keep scrolling <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
-        </div>
-
+    <div class="wrap rail__in">
+      <div class="rail__intro">
+        <div><p class="label">Platforms</p><h2 id="rail-title">The platforms behind the <em>apps</em>.</h2></div>
+        <p>Four web platforms I built and run for model serving, photo quality, storage and risk advisory.</p>
+      </div>
+      <div class="rail__grid">
         <article class="rcard" id="model" aria-labelledby="r-model">
           <div class="browser"><div class="browser__bar"><span class="browser__lights"><i></i><i></i><i></i></span><span class="browser__url"><svg aria-hidden="true"><use href="#i-lock"/></svg>model.annam.ai</span><span class="browser__sp"></span></div><div class="browser__view"><img src="assets/model-desk.jpg" width="1600" height="1000" alt="model.annam.ai landing page" loading="lazy" decoding="async"></div></div>
           <div class="rcard__text">
@@ -813,7 +801,6 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
           </div>
         </article>
       </div>
-      <span class="rail__progress" aria-hidden="true"><i></i></span>
     </div>
   </section>
 
@@ -998,44 +985,11 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
     }); });
   }
 
-  /* platforms rail: vertical scroll drives a horizontal track on wide screens */
-  const rail = document.querySelector('.rail');
-  const railTrack = rail && rail.querySelector('.rail__track');
-  const railPin = rail && rail.querySelector('.rail__pin');
-  const railMQ = matchMedia('(min-width: 1000px)');
-  let railDist = 0;
-  const railUpdate = () => {
-    if (!rail || !rail.classList.contains('rail--live')) return;
-    const r = rail.getBoundingClientRect();
-    const p = railDist ? Math.min(1, Math.max(0, -r.top / railDist)) : 0;
-    railTrack.style.transform = 'translate3d(' + (-p * railDist).toFixed(1) + 'px,0,0)';
-    rail.style.setProperty('--rp', p.toFixed(4));
-  };
-  const railMeasure = () => {
-    if (!rail) return;
-    const live = railMQ.matches && !reduce;
-    rail.classList.toggle('rail--live', live);
-    if (!live) { rail.style.height = ''; railTrack.style.transform = ''; railDist = 0; return; }
-    railDist = Math.max(0, railTrack.scrollWidth - railPin.clientWidth);
-    rail.style.height = (railDist + innerHeight) + 'px';
-    railUpdate();
-  };
-  if (rail) {
-    railMeasure();
-    addEventListener('scroll', railUpdate, { passive: true });
-    addEventListener('resize', () => { railMeasure(); if (motion) ST.refresh(); });
-  }
-
-  /* in-page links, with rail cards mapped to their place on the rail */
+  /* in-page links */
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); if (!id || id.length < 2) return;
     const t = document.querySelector(id); if (!t) return;
     e.preventDefault();
-    if (rail && rail.classList.contains('rail--live') && rail.contains(t) && t !== rail) {
-      const top = rail.getBoundingClientRect().top + scrollY;
-      const x = Math.max(0, Math.min(railDist, t.offsetLeft - (innerWidth - t.offsetWidth) / 2));
-      scrollToY(top + x); return;
-    }
     if (lenis) lenis.scrollTo(t, { offset: -76 }); else t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   }));
 
@@ -1139,23 +1093,17 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
       const d = parseFloat(el.dataset.depth) || 1;
       G.fromTo(el, { y: 70 * d }, { y: -40 * d, ease: 'none', scrollTrigger: { trigger: s, start: 'top bottom', end: 'bottom top', scrub: true } });
     }));
-    G.utils.toArray('.stage .browser__view img').forEach(img => G.fromTo(img, { scale: 1.12 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'center center', scrub: true } }));
-    G.utils.toArray('.sec__head h2, .xp > li, .paper, .talk, .kit > div, .creds > div').forEach(el => {
+    G.utils.toArray('.stage .browser__view img, .rcard .browser__view img').forEach(img => G.fromTo(img, { scale: 1.12 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'center center', scrub: true } }));
+    G.utils.toArray('.sec__head h2, .rail__intro h2, .rcard, .xp > li, .paper, .talk, .kit > div, .creds > div').forEach(el => {
       if (el.getBoundingClientRect().top < innerHeight) return;
       G.from(el, { y: 44, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } });
     });
     const p = document.querySelector('.portrait img');
     if (p) G.fromTo(p, { scale: 1.15 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: p, start: 'top bottom', end: 'bottom 40%', scrub: true } });
     const lat = document.querySelector('[data-latency] .lbar__f--b');
-    if (lat) {
-      const play = () => G.fromTo(lat, { width: '100%' }, { width: '1%', duration: 1.8, ease: 'expo.out', delay: 0.2 });
-      if (rail && rail.classList.contains('rail--live')) {
-        const card = document.getElementById('audit'); let done = false;
-        addEventListener('scroll', () => { if (done) return; const r = card.getBoundingClientRect(); if (r.left < innerWidth * 0.7 && r.right > 0 && rail.getBoundingClientRect().top <= 0) { done = true; play(); } }, { passive: true });
-      } else ST.create({ trigger: lat, start: 'top 85%', once: true, onEnter: play });
-    }
-    addEventListener('load', () => { railMeasure(); ST.refresh(); });
-  } else if (rail) addEventListener('load', railMeasure);
+    if (lat) ST.create({ trigger: lat, start: 'top 85%', once: true, onEnter: () => G.fromTo(lat, { width: '100%' }, { width: '1%', duration: 1.8, ease: 'expo.out', delay: 0.2 }) });
+    addEventListener('load', () => ST.refresh());
+  }
 
   /* project index: a preview follows the pointer */
   const ipv = document.querySelector('.ipv'), idx = document.querySelector('.index');
@@ -1204,7 +1152,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
   const big = document.querySelector('.bigname span');
   const fitBig = () => { if (!big) return; big.style.fontSize = '100px'; const w = big.getBoundingClientRect().width, host = big.parentElement; const cs = getComputedStyle(host); const avail = host.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); if (w) big.style.fontSize = Math.min(420, 100 * avail * 0.98 / w).toFixed(1) + 'px'; };
   fitBig(); addEventListener('resize', fitBig);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fitBig(); if (rail) railMeasure(); if (motion) ST.refresh(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fitBig(); if (motion) ST.refresh(); });
 
   /* theme toggle, remembered per viewer when storage allows */
   const tbtn = document.getElementById('theme-toggle');
