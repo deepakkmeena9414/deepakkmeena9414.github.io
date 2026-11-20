@@ -294,37 +294,39 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 .story__scan{position:absolute;left:0;right:0;top:0;height:22%;z-index:3;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(246,162,30,0),rgba(246,162,30,.25) 70%,rgba(246,162,30,.95) 100%)}
 .story__scan.go{animation:scan 1.1s cubic-bezier(.45,0,.2,1)}
 @keyframes scan{0%{opacity:1;transform:translateY(-100%)}85%{opacity:1}100%{opacity:0;transform:translateY(460%)}}
-.story__nav{display:none;list-style:none;margin:0;padding:0 0 0 22px;position:relative;align-self:center;gap:2px}
-.story__nav::before,.story__nav::after{content:"";position:absolute;left:0;top:8px;width:2px;border-radius:2px}
-.story__nav::before{bottom:8px;background:rgba(244,246,241,.16)}
-.story__nav::after{height:calc((100% - 16px) * var(--p,0));background:var(--accent)}
-.story__nav button{all:unset;cursor:pointer;display:flex;gap:14px;align-items:baseline;padding:10px 0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:rgba(244,246,241,.48);transition:color .3s}
+.story__nav{display:none;list-style:none;margin:0;padding:0;align-self:center;gap:6px}
+.story__nav li{display:grid;gap:8px}
+.story__nav button{all:unset;cursor:pointer;display:flex;gap:14px;align-items:baseline;padding:6px 0 0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:rgba(244,246,241,.48);transition:color .3s}
 .story__nav button span{font-size:13px;font-variant-numeric:tabular-nums}
-.story__nav li.is-on button{color:#F4F6F1}
-.story__nav button:hover{color:#F4F6F1}
-.story__nav button:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
-.story--live .story__track{height:calc(var(--steps) * 75vh + 100vh)}
-.story--live .story__pin{position:sticky;top:0;height:100vh;padding:calc(env(safe-area-inset-top,0px) + 84px) 0 16px}
-@supports (height:100svh){.story--live .story__track{height:calc(var(--steps) * 75svh + 100svh)}.story--live .story__pin{height:100svh}}
-.story--live .story__pin>.wrap{height:100%}
-.story--live .story__panel{height:100%}
-.story--live{--ph:min(calc(100vh - 200px),700px)}
-@supports (height:100svh){.story--live{--ph:min(calc(100svh - 200px),700px)}}
-.story--live .story__caps{position:relative;display:block;height:100%}
-.story--live .story__cap{position:absolute;left:0;right:0;top:50%;opacity:0;transform:translateY(calc(-50% + 30px));transition:opacity .5s ease,transform .8s var(--ease);pointer-events:none}
-.story--live .story__cap.is-on{opacity:1;transform:translateY(-50%);pointer-events:auto}
+.story__nav li.is-on button,.story__nav button:hover{color:#F4F6F1}
+.story__nav button:focus-visible,.story__segs button:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+.story__bar{display:block;height:2px;border-radius:2px;background:rgba(244,246,241,.16);overflow:hidden}
+.story__bar b,.story__segs b{display:block;height:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+.story__nav li.is-done .story__bar b,.story__segs .is-done b{transform:scaleX(1)}
+.story__nav li.is-on .story__bar b,.story__segs .is-on b{animation:storyfill 4s linear forwards}
+.story.is-paused .story__nav li.is-on .story__bar b,.story.is-paused .story__segs .is-on b{animation-play-state:paused}
+@keyframes storyfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.story__segs{display:none;gap:6px}
+.story__segs button{all:unset;flex:1;display:flex;align-items:center;height:18px;cursor:pointer}
+.story__segs i{display:block;width:100%;height:3px;border-radius:3px;background:rgba(244,246,241,.2);overflow:hidden}
+.story--auto{--ph:clamp(420px,calc(100vh - 290px),620px)}
+@supports (height:100svh){.story--auto{--ph:clamp(420px,calc(100svh - 290px),620px)}}
+.story--auto .story__caps{position:relative;display:block;align-self:stretch;min-height:240px}
+.story--auto .story__cap{position:absolute;left:0;right:0;top:50%;opacity:0;transform:translateY(calc(-50% + 30px));transition:opacity .5s ease,transform .8s var(--ease);pointer-events:none}
+.story--auto .story__cap.is-on{opacity:1;transform:translateY(-50%);pointer-events:auto}
 @media (min-width:1000px){
-  .story--live .story__panel{grid-template-columns:minmax(0,1fr) auto minmax(0,.62fr);gap:clamp(24px,3.4vw,64px)}
-  .story--live .story__nav{display:grid}
+  .story--auto .story__panel{grid-template-columns:minmax(0,1fr) auto minmax(0,.62fr);gap:clamp(24px,3.4vw,64px)}
+  .story--auto .story__nav{display:grid}
 }
 @media (max-width:999px){
-  .story--live{--ph:min(calc(100vh - 380px),470px)}
-  @supports (height:100svh){.story--live{--ph:min(calc(100svh - 380px),470px)}}
-  .story--live .story__panel{grid-template-rows:auto minmax(0,1fr);align-items:start;gap:18px;padding:20px}
-  .story--live .story__device{order:-1}
-  .story--live .story__caps{height:100%;min-height:150px}
-  .story--live .story__cap{top:0;transform:translateY(24px)}
-  .story--live .story__cap.is-on{transform:none}
+  .story--auto{--ph:clamp(300px,calc(100vh - 400px),470px)}
+  @supports (height:100svh){.story--auto{--ph:clamp(300px,calc(100svh - 400px),470px)}}
+  .story--auto .story__panel{grid-template-columns:minmax(0,1fr);align-items:start;gap:16px;padding:20px}
+  .story--auto .story__device{order:-1}
+  .story--auto .story__caps{min-height:150px}
+  .story--auto .story__cap{top:0;transform:translateY(24px)}
+  .story--auto .story__cap.is-on{transform:none}
+  .story--auto .story__segs{display:flex}
   .story__cap h3{font-size:clamp(24px,6.4vw,34px)}
   .story__cap p{font-size:15px;margin-top:8px}
 }
@@ -478,7 +480,8 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 @media (prefers-reduced-motion: reduce){
   .field__rows{animation:none}
   .cursor{display:none}
-  .story__shots .story__shot,.story--live .story__cap{transition:none}
+  .story__shots .story__shot,.story--auto .story__cap{transition:none}
+  .story__nav li.is-on .story__bar b,.story__segs .is-on b{animation:none;transform:scaleX(1)}
 }
 </style>
 
@@ -666,12 +669,19 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
               </div></div>
             </div>
             <ol class="story__nav" aria-label="FasalNetra steps">
-              <li class="is-on"><button type="button"><span>01</span>Choose what to check</button></li>
-              <li><button type="button"><span>02</span>Take one photo</button></li>
-              <li><button type="button"><span>03</span>See what it found</button></li>
-              <li><button type="button"><span>04</span>Know what to do</button></li>
-              <li><button type="button"><span>05</span>Works without internet</button></li>
+              <li class="is-on"><button type="button"><span>01</span>Choose what to check</button><i class="story__bar" aria-hidden="true"><b></b></i></li>
+              <li><button type="button"><span>02</span>Take one photo</button><i class="story__bar" aria-hidden="true"><b></b></i></li>
+              <li><button type="button"><span>03</span>See what it found</button><i class="story__bar" aria-hidden="true"><b></b></i></li>
+              <li><button type="button"><span>04</span>Know what to do</button><i class="story__bar" aria-hidden="true"><b></b></i></li>
+              <li><button type="button"><span>05</span>Works without internet</button><i class="story__bar" aria-hidden="true"><b></b></i></li>
             </ol>
+            <div class="story__segs" role="group" aria-label="FasalNetra steps">
+              <button type="button" aria-label="Step 1: Choose what to check"><i><b></b></i></button>
+              <button type="button" aria-label="Step 2: Take one photo"><i><b></b></i></button>
+              <button type="button" aria-label="Step 3: See what it found"><i><b></b></i></button>
+              <button type="button" aria-label="Step 4: Know what to do"><i><b></b></i></button>
+              <button type="button" aria-label="Step 5: Works without internet"><i><b></b></i></button>
+            </div>
           </div>
         </div>
       </div>
@@ -975,35 +985,53 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
   const onScroll = () => bar && bar.classList.toggle('is-scrolled', scrollY > 10);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  /* FasalNetra story: a pinned phone that steps through the app as you scroll */
+  /* FasalNetra story: the phone plays the five steps by itself, 4 seconds each */
   const story = document.querySelector('.story');
   if (story) {
-    const track = story.querySelector('.story__track');
     const caps = [...story.querySelectorAll('.story__cap')];
     const shots = [...story.querySelectorAll('.story__shot')];
     const marks = [...story.querySelectorAll('.story__nav li')];
+    const segs = [...story.querySelectorAll('.story__segs button')];
     const scan = story.querySelector('.story__scan');
-    const n = caps.length; let cur = 0;
-    story.classList.add('story--live');
-    const set = i => {
-      if (i === cur) return; cur = i;
+    const panel = story.querySelector('.story__panel');
+    const n = caps.length, DUR = 4000;
+    let cur = 0, timer = 0, startedAt = 0, remaining = DUR, inView = false, hovering = false;
+    story.classList.add('story--auto', 'is-paused');
+    const canRun = () => !reduce && inView && !hovering && document.visibilityState === 'visible';
+    const paint = (i, sweep) => {
       caps.forEach((c, k) => c.classList.toggle('is-on', k === i));
       shots.forEach((c, k) => c.classList.toggle('is-on', k === i));
-      marks.forEach((c, k) => c.classList.toggle('is-on', k === i));
-      if (scan && !reduce) { scan.classList.remove('go'); void scan.offsetWidth; scan.classList.add('go'); }
+      [marks, segs].forEach(list => list.forEach(el => el.classList.remove('is-on', 'is-done')));
+      void story.offsetWidth;
+      [marks, segs].forEach(list => list.forEach((el, k) => {
+        if (k < i) el.classList.add('is-done');
+        if (k === i) el.classList.add('is-on');
+        const btn = el.tagName === 'BUTTON' ? el : el.querySelector('button');
+        if (btn) { if (k === i) btn.setAttribute('aria-current', 'step'); else btn.removeAttribute('aria-current'); }
+      }));
+      if (sweep && scan && !reduce) { scan.classList.remove('go'); void scan.offsetWidth; scan.classList.add('go'); }
     };
-    const update = () => {
-      const r = track.getBoundingClientRect();
-      const total = r.height - innerHeight;
-      const p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
-      story.style.setProperty('--p', p.toFixed(4));
-      set(Math.min(n - 1, Math.floor(p * n)));
+    const stop = () => { if (!timer) return; clearTimeout(timer); timer = 0; remaining = Math.max(0, remaining - (performance.now() - startedAt)); };
+    const sync = () => {
+      const run = canRun();
+      story.classList.toggle('is-paused', !run);
+      if (!run) { stop(); return; }
+      if (timer) return;
+      startedAt = performance.now();
+      timer = setTimeout(() => { timer = 0; go(cur + 1); }, remaining);
     };
-    addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
-    marks.forEach((m, k) => { const b = m.querySelector('button'); if (b) b.addEventListener('click', () => {
-      const r = track.getBoundingClientRect(); const total = r.height - innerHeight;
-      scrollToY(r.top + scrollY + total * (k + 0.5) / n);
-    }); });
+    const go = i => { stop(); cur = (i + n) % n; remaining = DUR; paint(cur, true); sync(); };
+    paint(0, false);
+    marks.forEach((m, k) => { const b = m.querySelector('button'); if (b) b.addEventListener('click', () => go(k)); });
+    segs.forEach((b, k) => b.addEventListener('click', () => go(k)));
+    if (fine) {
+      panel.addEventListener('pointerenter', () => { hovering = true; sync(); });
+      panel.addEventListener('pointerleave', () => { hovering = false; sync(); });
+    }
+    document.addEventListener('visibilitychange', sync);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => { const e = es[es.length - 1]; inView = e.isIntersecting && e.intersectionRatio >= 0.35; sync(); }, { threshold: [0, 0.35, 0.6, 1] }).observe(panel);
+    } else { inView = true; sync(); }
   }
 
   /* in-page links */
@@ -1103,7 +1131,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
       ST.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => G.fromTo(o, { v: 0 }, { v: end, duration: 1.6, ease: 'power3.out', onUpdate: () => { el.textContent = Math.round(o.v); } }) });
     });
     /* story panel settles in as it arrives */
-    G.fromTo('.story__panel', { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.story__track', start: 'top bottom', end: 'top top', scrub: true } });
+    G.fromTo('.story__panel', { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.story__panel', start: 'top bottom', end: 'top 25%', scrub: true } });
     /* app stages stack on wide screens */
     const stages = G.utils.toArray('.stage');
     G.matchMedia().add('(min-width: 1000px)', () => {
